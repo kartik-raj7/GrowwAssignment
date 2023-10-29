@@ -1,0 +1,147 @@
+@import '../variables.scss';
+.chartstyle{
+    height: 400px;
+    width: 100%;
+    padding: 10px;
+    @media (max-width:$tablet){
+        height: 320px;
+    }
+    @media (max-width:$mobile){
+        height: 240px;
+    }
+}
+.container{
+ border:2px solid $green300;
+ margin: 10px 0;
+
+
+}
+.tag{
+    width: max-content;
+    padding: 7px;
+    height: 30px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    align-items: center;
+    font-size: $textdesktop;
+    margin: 6px;
+}
+@media (max-width:$tablet){
+    .tag{
+    font-size: $tagtextmobile;
+    height: 25px;
+    }
+}
+@media (max-width:$mobile){
+    .tag{
+        font-size: $tagtextmobile;
+        height: 12px;
+       
+        }
+}
+.slider-container {
+    position: relative;
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  .slider {
+    width: 500px;
+    height: 20px;
+    cursor: not-allowed;
+  }
+  
+  .labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+  }
+  
+  .label {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .label.current {
+    font-weight: bold;
+    color: #3498db; 
+  }
+
+  .line {
+ 
+    width: 700px; 
+    height: 2px;
+    background-color: #ccc;
+    left: 50%;
+    transform: translateX(-1px);
+    @media (max-width:$tablet){
+        width:350px;
+    }
+    @media (max-width:$mobile){
+        width: 200px;
+    }
+  }
+  .toggleContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 0;
+  }
+  
+  .toggleButton {
+    border-radius: 50%;
+    padding: 10px;
+    margin: 5px;
+    background-color: white;
+    border: none;
+    @media (max-width:$mobile){
+      padding:5px ;
+    }
+  }
+  
+  .selected {
+    background-color: $green300;
+  }
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.loadingImage {
+  animation: flashAnimation 1s infinite alternate; 
+}
+
+@keyframes flashAnimation {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0.5;
+  }
+}
+
+.link{
+  background:none ;
+  border:none;
+}
+@keyframes bounceAnimation {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0); 
+  }
+  40% {
+    transform: translateY(-5px); 
+  }
+  60% {
+    transform: translateY(5px); 
+  }
+}
+
+.bounce {
+  animation: bounceAnimation 1s infinite;
+}

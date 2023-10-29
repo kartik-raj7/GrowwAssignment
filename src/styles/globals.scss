@@ -1,0 +1,129 @@
+@import '../variables.scss';
+body{
+  padding: 0;
+  margin: 0;
+}
+.flex{
+ display: flex;
+}
+.flex-justify-center-align-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.align-center{
+  align-items: center;
+}
+.align-start{
+  align-items: start;
+}
+.justify-center{
+  justify-content: center;
+}
+.flex{
+  display: flex;
+}
+.justify-evenly{
+  justify-content: space-evenly;
+}
+.justify-between{
+  justify-content: space-between;
+}
+.search-input-width{
+  width: 420px;
+  height: 30px;
+  border-radius: 6px;
+}
+.search-input-width:focus{
+  border:0.5px solid $purple500;
+}
+
+.pr-1{
+  padding-right: 1rem;
+}
+.cursor{
+  cursor:pointer;
+}
+.glass-effect{
+background: rgba(102, 227, 196, 0.38);
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(2.8px);
+-webkit-backdrop-filter: blur(2.8px);
+border: 1px solid rgba(102, 227, 196, 0.3);
+}
+.background-purple{
+  background-color: $purple500;
+}
+.input-border{
+  border:0.5px solid $green500;
+}
+.mr-1{
+  margin-right: 1rem;
+}
+.w-80{
+  width:80%
+}
+.pt-1{
+  padding-top:1rem;
+}
+.flex-column{
+  flex-direction: column;
+}
+.m-0{
+  
+  margin: 0;
+}
+.mx-1{
+  margin:1rem;
+}
+.mx-2_5{
+  margin:2.5rem 0rem;
+}
+.fontheading{
+  font-size: 0.6rem;
+  padding-right: 10px;
+  font-weight: bold;
+  color:$purple500;
+}
+.fontsubheading{
+  font-size: 0.6rem;
+  color:$green500;
+}
+.textalign-left{
+ text-align: left;
+}
+@media (max-width:$tablet){
+  .search-input-width{
+    width: 270px;
+  }
+  .fontheading{
+    font-size: 0.6rem;
+  }
+  .fontsubheading{
+    font-size: 0.6rem;
+  }
+}
+@media (max-width:$mobile){
+  .search-input-width{
+    width: 150px;
+  }
+  .fontheading{
+    font-size: 0.4rem;
+  }
+  .fontsubheading{
+    font-size: 0.4rem;
+  }
+}
+.position-sticky{
+  position: sticky;
+}
+.z-100{
+  z-index: 100;
+}
+.errortext{
+  color:$purple500
+}
+.erroricon{
+  color:$green300;
+  font-size: 3rem;
+}

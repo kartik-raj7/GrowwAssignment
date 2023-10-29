@@ -1,0 +1,25 @@
+  @import '../../variables.scss';
+
+  .active {
+    background-color:$green300;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border: none ;
+    // border-radius: 7px 0px 0px 7px;
+  }
+  .inactive{
+    background-color:$purple500;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border: none ;
+    // border-radius: 0px 5px 5px 0px;
+  }
+
+  .activetab{
+    display: block;
+  }
+  .inactivetab{
+    display: none;
+  }

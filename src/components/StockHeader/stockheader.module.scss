@@ -1,0 +1,30 @@
+@import '../../variables.scss';
+.companyimage{
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  padding: 10px;
+  @media (max-width:$mobile){
+    height: 30px;
+  width: 30px;
+  }
+}
+.companyimageborder{
+   border: 1px solid $bordercolor;
+   border-radius: 50%;
+   display: flex;
+   align-items: center;
+}
+.companyname{
+    padding-left: 10px;
+}
+.pricediv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@media (max-width:$mobile){
+    .companytitle{
+        font-size: $textmobile;
+    }
+}
