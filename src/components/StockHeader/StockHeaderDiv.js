@@ -7,7 +7,7 @@ const stockdata = data?data[0]:'';
     <div className='flex justify-between'>
      <div className='flex'>
       <div className={style.companyimageborder}>
-      <Image width={40} height={40} src={stockdata?.image} className={style.companyimage}/>
+      <Image width={40} height={40} src={stockdata?.image} className={style.companyimage} alt="stock-image"/>
       </div>
       <div className={`flex flex-column ${style.companyname} justify-center`}>
       <div className={style.companytitle}>{stockdata?.companyName}</div>

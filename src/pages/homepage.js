@@ -60,7 +60,7 @@ const ErrorPage = () => {
         function:apiRouter.TOP_GAINERS,
       }
       dispatch(fetchDataAsync(data));
-    }, [dispatch]);
+    }, [dispatch,topgainers,toplosers]);
   return (
     <div>
          {displayHomepage()}

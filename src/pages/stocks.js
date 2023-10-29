@@ -25,19 +25,19 @@ const Stocks = () => {
         else{
         let data={
             function:apiRouter.OVERVIEW,
-            Symbol:ticker
+            symbol:ticker
           }
           let chartdatadaily={
               function:apiRouter.DAILY,
-              Symbol:ticker
+              symbol:ticker
           }
           let chartdatamonthly={
               function:apiRouter.MONTHLY,
-              Symbol:ticker
+              symbol:ticker
           }
           let chartdataweekly={
               function:apiRouter.WEEKLY,
-              Symbol:ticker
+              symbol:ticker
           }
           dispatch(fetchStockDetailsAsync(data,"overview",ticker));
           dispatch(fetchImageDetailsASync({ticker,image:true},"image",ticker));
@@ -89,7 +89,7 @@ const Stocks = () => {
     useEffect(() => {
         FetchStockdata(ticker);
         setchartdata(stock_details[ticker]?.daily)
-    }, [dispatch]);
+    }, [dispatch,ticker,stock_details]);
     useEffect(()=>{
       if(chartfreq==='1D'){
         setchartdata(dailydata)
@@ -150,10 +150,9 @@ const Stocks = () => {
             <Container>
             {chartdata&&<LineChartComponent data={chartdata}/>}
             <ToggleSwitch options={options} onToggle={handleToggle}/>
-            </Container>
-{/*             
-             {stock_details[ticker]?.overviewdata&&<StockInfoContainer data={stock_details[ticker]?.overviewdata}/>} */}
-            <StockInfoContainer data={overviewdata}/>
+            </Container>         
+             {stock_details[ticker]?.overviewdata&&<StockInfoContainer data={stock_details[ticker]?.overviewdata}/>} 
+            {/* <StockInfoContainer data={overviewdata}/> */}
             </div>
             </div>
             </div>

@@ -8,19 +8,19 @@ const FetchStockdata=(ticker)=>{
     const dispatch = useDispatch();
     let data={
         function:apiRouter.OVERVIEW,
-        Symbol:ticker
+        symbol:ticker
       }
       let chartdatadaily={
           function:apiRouter.DAILY,
-          Symbol:ticker
+          symbol:ticker
       }
       let chartdatamonthly={
           function:apiRouter.MONTHLY,
-          Symbol:ticker
+          symbol:ticker
       }
       let chartdataweekly={
           function:apiRouter.WEEKLY,
-          Symbol:ticker
+          symbol:ticker
       }
       dispatch(fetchStockDetailsAsync(data,"overview",ticker));
       dispatch(fetchImageDetailsASync({ticker,image:true},"image",ticker));
