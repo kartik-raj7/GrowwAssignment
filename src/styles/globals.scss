@@ -11,7 +11,12 @@ body {
 .dark-mode {
   --background-color: #333;
   --text-color: #fff;
- 
+  .fontheading{
+    color:$green300;
+  }
+  .fontsubheading{
+    color:white;
+  }
 }
 body.dark-mode{
   --text-secondary:#fff;
