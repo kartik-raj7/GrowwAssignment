@@ -3,12 +3,13 @@ import React from 'react'
 import style from './cardlistwrapper.module.scss'
 import createUrlWithQuery from '@/utils/CreateURLwithQuery'
 import {BsChevronDoubleDown} from 'react-icons/bs'
-import Button from '@/utils/Button'
+import Button from '@/utils/ui/Button'
+import NothingToSeeHere from '../NothingToSee/NothingToSee'
 const CardListWrapper = ({data}) => {
   function checkWrapperData(){
-    if(data.length==0){
+    if(data.length<=2){
       return(
-        <h2>Fuck off</h2>
+        <NothingToSeeHere/>
       )
     }
     else{

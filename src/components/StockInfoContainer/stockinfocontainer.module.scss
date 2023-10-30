@@ -1,9 +1,9 @@
-@import '../../variables.scss';
+@import '../../styles/variables.scss';
 .stockheading{
     font-size: $headingdesktop;
     font-weight: bold;
     color:$purple500;
-    border-bottom: 2px solid $green300;
+    ;
     padding: 20px;
     @media (max-width:$tablet){
         font-size: $headingtablet;
@@ -14,7 +14,6 @@
 }
 .stockdescription{
     padding: 20px;
-    color:$text-secondary;
     font-size:$textdesktop;
     @media (max-width:$tablet){
         font-size: $texttablet;
@@ -25,4 +24,7 @@
 }
 .stockfundamentals{
     flex-wrap: wrap;
+}
+.stockheadingdiv{
+    border-bottom: 2px solid $green300
 }

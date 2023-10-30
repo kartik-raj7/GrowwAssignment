@@ -7,10 +7,10 @@ const StocksSlice = createSlice({
     loading: false,
     error: null,
     stock_details: {},
+    expirationTime:null,
   },
   reducers: {
     setData: (state, action) => {
-      console.log(action.payload)
       const { symbol, type, data } = action.payload;
 
       state.loading = false;
@@ -28,6 +28,7 @@ const StocksSlice = createSlice({
           },
         };
       }
+      state.expirationTime = new Date().toISOString();
     },
     setLoading: (state) => {
       state.loading = true;
@@ -35,7 +36,7 @@ const StocksSlice = createSlice({
     },
     setError: (state, action) => {
       state.loading = false;
-      state.error = action.payload;
+      state.error = true;
     },
   },
 });
@@ -52,7 +53,7 @@ export const fetchStockDetailsAsync = (data, type, symbol) => async (dispatch) =
       dispatch(setError(result.message));
     }
   } catch (error) {
-    dispatch(setError('Something went wrong'));
+    dispatch(setError(error.message));
   }
 };
 
@@ -66,7 +67,7 @@ export const fetchImageDetailsASync = (data,type,symbol) => async (dispatch) => 
       dispatch(setError(result.message));
     }
   } catch (error) {
-    dispatch(setError('Something went wrong'));
+    dispatch(setError(error.message));
   }
 };
 export default StocksSlice.reducer;

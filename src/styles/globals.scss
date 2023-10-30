@@ -1,4 +1,26 @@
-@import '../variables.scss';
+@import '../styles/variables.scss';
+:root {
+  --background-color: #fff;
+  --text-color: #333;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+.dark-mode {
+  --background-color: #333;
+  --text-color: #fff;
+  .fontheading{
+    color:$green300;
+  }
+  .fontsubheading{
+    color:white;
+  }
+}
+body.dark-mode{
+  --text-secondary:#fff;
+}
 body{
   padding: 0;
   margin: 0;
@@ -127,3 +149,13 @@ border: 1px solid rgba(102, 227, 196, 0.3);
   color:$green300;
   font-size: 3rem;
 }
+.alignleft{
+  text-align: left;
+}
+.alignright{
+  text-align: right;
+}
+.m-2{
+  margin: 2rem 1.25rem;
+}
+

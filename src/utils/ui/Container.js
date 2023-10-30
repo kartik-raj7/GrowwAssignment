@@ -1,6 +1,5 @@
-import styled from '@emotion/styled';
 import React from 'react';
-import style from './style.module.scss'
+import style from '../style.module.scss'
 const Container = ({ children }) => {
   return (
     <div className={style.container}>

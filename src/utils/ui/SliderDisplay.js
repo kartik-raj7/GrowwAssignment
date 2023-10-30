@@ -1,5 +1,5 @@
 import React from 'react';
-import style from './style.module.scss';
+import style from '../style.module.scss';
 import {BiSolidUpArrow} from 'react-icons/bi'
 const Slider = ({ currentPrice, low, high }) => {
     const positionPercent = ((currentPrice - low) / (high - low)) * 100;

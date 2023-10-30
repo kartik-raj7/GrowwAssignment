@@ -1,25 +1,29 @@
 import TopBar from '@/components/TopBar/topBar'
 import { fetchImageDetailsASync, fetchStockDetailsAsync, setData } from '@/redux/api/stockdetails';
 import { apiRouter } from '@/services/apiRouter';
-import Container from '@/utils/Container';
+import Container from '@/utils/ui/Container';
 import LineChartComponent from '@/components/LineChartComponent/LineChartComponent';
-import dailydata from '@/components/LineChartComponent/dailydata';
-import monthlydata from '@/components/LineChartComponent/monthlydata';
 import weeklydata from '@/components/LineChartComponent/weeklydata';
-import Tag from '@/utils/Tag';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import StockInfoContainer from '@/components/StockInfoContainer/StockInfoContainer';
-import overviewdata from '@/components/LineChartComponent/overview';
 import StockHeaderDiv from '@/components/StockHeader/StockHeaderDiv';
-import ToggleSwitch from '@/utils/ToggleSwitches';
-import LoadingSpinner from '@/utils/Loader';
+import ToggleSwitch from '@/utils/ui/ToggleSwitches';
+import LoadingSpinner from '@/utils/ui/Loader';
 import ErrorPage from './404';
-// import { FetchStockdata } from './api/FetchStockData';
+import NothingToSeeHere from '@/components/NothingToSee/NothingToSee';
+import isExpired from '@/utils/CacheExpired';
 const Stocks = () => {
+  const dispatch = useDispatch();
+  const [chartdata,setchartdata] = useState();
+  const router = useRouter();
+  const { loading, error,stock_details,expirationTime} = useSelector((state) => state.stockData);
+  const {ticker} = router.query;
+  const symbol = ticker;
+  const [chartfreq,setchartfreq] = useState('1D');
     function FetchStockdata(ticker){
-        if(stock_details[ticker]){
+        if(stock_details[ticker]&&!isExpired(expirationTime)){ //
              return;
         }
         else{
@@ -75,13 +79,6 @@ const Stocks = () => {
             },
             filteredData}
     }
-    const dispatch = useDispatch();
-    const [chartdata,setchartdata] = useState(null);
-    const router = useRouter();
-    const { loading, error,stock_details} = useSelector((state) => state.stockData);
-    const {ticker} = router.query;
-    const symbol = ticker;
-    const [chartfreq,setchartfreq] = useState('1D');
     const handleToggle = (selectedOption) => {
         setchartfreq(selectedOption)
       };
@@ -91,14 +88,19 @@ const Stocks = () => {
         setchartdata(stock_details[ticker]?.daily)
     }, [dispatch,ticker,stock_details]);
     useEffect(()=>{
+      if(chartdata==null&&stock_details[ticker]?.daily){
+        setchartdata(stock_details[ticker]?.daily);
+      }
+    },[stock_details[ticker]?.daily]);
+    useEffect(()=>{
       if(chartfreq==='1D'){
-        setchartdata(dailydata)
+        setchartdata(stock_details[ticker]?.daily)
         }
       else if(chartfreq==='1W'){
-        setchartdata(weeklydata);
+        setchartdata(stock_details[ticker]?.weekly);
         }
       else if(chartfreq==='1M'){
-        setchartdata(monthlydata);
+        setchartdata(stock_details[ticker]?.monthly);
         }
     else if(chartfreq==='3M'){
         if(stock_details[ticker].quarterly){
@@ -139,7 +141,9 @@ const Stocks = () => {
           else if(error){
             return <ErrorPage/>
           }
-          else return(
+          else{ 
+            if(Array.isArray(stock_details[ticker]?.image)&&typeof chartdata =='object' && typeof stock_details[ticker]?.overview == 'object')
+            return(
             <div>
             <TopBar/>
             <div className='flex align-center justify-center '>
@@ -147,16 +151,23 @@ const Stocks = () => {
             <div className='pt-1'>
             <StockHeaderDiv data={stock_details[ticker]?.image}/>
             </div>
-            <Container>
-            {chartdata&&<LineChartComponent data={chartdata}/>}
+           <Container>
+            <LineChartComponent data={chartdata}/>
             <ToggleSwitch options={options} onToggle={handleToggle}/>
-            </Container>         
-             {stock_details[ticker]?.overviewdata&&<StockInfoContainer data={stock_details[ticker]?.overviewdata}/>} 
-            {/* <StockInfoContainer data={overviewdata}/> */}
+            </Container>        
+            <StockInfoContainer data={stock_details[ticker]?.overview}/>
             </div>
             </div>
             </div>
           )
+          else{
+            return(<>
+              <TopBar error={true}/>
+              <NothingToSeeHere/>
+              </>
+            )
+          }
+        }
     }
   return (
     <div>

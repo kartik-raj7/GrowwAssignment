@@ -10,6 +10,7 @@ import { useRouter } from 'next/router'
 import createUrlWithQuery from '@/utils/CreateURLwithQuery'
 import { useDispatch, useSelector } from 'react-redux'
 import { setData } from '@/redux/api/gainerLosers'
+import DarkModeToggle from '../ToggleDark/ToggleDark'
 const TopBar = ({error}) => {
   const [inputValue, setInputValue] = useState();
   const stockdata = useSelector((state) => state.data);
@@ -28,7 +29,7 @@ const TopBar = ({error}) => {
       try {
         const result = await axiosGet(data)
         if(result){
-          setsearchresultData(result)
+          setsearchresultData(result.data)
         }
         
         
@@ -91,9 +92,10 @@ const TopBar = ({error}) => {
         logo={<BiSearch/>}
         handleSearch={handleSearch}
         redirectstockDetailsPage={redirectstockDetailsPage}
-        data={searchresult}
+        data={searchresultdata?searchresultdata:[]}
       />
-  <div justify='center' align='center' height='100%'>
+  <div className='flex justify-center align-center'>
+    <DarkModeToggle/>
       </div>
       </>}
       </div>

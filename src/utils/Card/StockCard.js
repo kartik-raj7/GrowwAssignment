@@ -8,7 +8,7 @@ const handleCardClick = () => {
     router.push(url);
   };
   return (
-    <div className={`${style.card} glass-effect flex flex-column justify-center align-center`} onClick={handleCardClick}>      
+    <div className={`${style.card} glass-effect flex flex-column justify-center align-center cursor`} onClick={handleCardClick}>      
         {Object.keys(data).map((key) => (
             <div className='flex align-center w-80 justify-between' key={key}>
             <div className='m-0 fontheading'>{convertToUpperCase(key)} </div> 

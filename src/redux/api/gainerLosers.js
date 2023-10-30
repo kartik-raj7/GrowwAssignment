@@ -10,6 +10,7 @@ const dataSlice = createSlice({
     toplosers:null,
     lastupdated:'',
     suggested_stocks:null,
+    expirationTime:null
   },
   reducers: {
     setData: (state, action) => {
@@ -19,6 +20,7 @@ const dataSlice = createSlice({
       state.topgainers = action.payload.top_gainers;
       state.toplosers = action.payload.top_losers;
       state.lastupdated = action.payload.last_updated;
+      state.expirationTime = new Date().toISOString();
     },
     setLoading: (state) => {
       state.loading = true;
@@ -29,7 +31,7 @@ const dataSlice = createSlice({
     },
     setError: (state, action) => {
       state.loading = false;
-      state.error = action.payload;
+      state.error = true;
       state.topgainers=null;
       state.toplosers=null;
       state.lastupdated=null;
@@ -49,7 +51,7 @@ export const fetchDataAsync = (data) => async (dispatch) => {
       dispatch(setError(result.message));
     }
   } catch (error) {
-    dispatch(setError('Something went wrong'));
+    dispatch(setError(error.messsage));
   }
 };
 
