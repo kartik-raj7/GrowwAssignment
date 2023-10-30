@@ -1,5 +1,5 @@
 import React from 'react';
-import style from './style.module.scss'; // Create a module for styling
+import style from './style.module.scss'; 
 import Image from 'next/image';
 
 const LoadingSpinner = () => {

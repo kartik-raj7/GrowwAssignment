@@ -7,6 +7,7 @@ const StocksSlice = createSlice({
     loading: false,
     error: null,
     stock_details: {},
+    expirationTime:null,
   },
   reducers: {
     setData: (state, action) => {
@@ -28,6 +29,7 @@ const StocksSlice = createSlice({
           },
         };
       }
+      state.expirationTime = new Date().toISOString();
     },
     setLoading: (state) => {
       state.loading = true;

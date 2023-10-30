@@ -8,6 +8,7 @@ import CardListWrapper from '@/components/CardListComponent/CardListWrapper';
 import { apiRouter } from '@/services/apiRouter';
 import LoadingSpinner from '@/utils/Loader';
 import { useRouter } from 'next/router';
+import isExpired from '@/utils/CacheExpired';
 
 const Homepage = () => {
     const dispatch = useDispatch();
@@ -15,7 +16,7 @@ const Homepage = () => {
 const ErrorPage = () => {
     router.push('/404');
   };
-    const { loading, error, topgainers,toplosers,lastupdated } = useSelector((state) => state.data);
+    const { loading, error, topgainers,toplosers,lastupdated,expirationTime } = useSelector((state) => state.data);
     const tabs = [
       {
         id: 'tab1',
@@ -24,7 +25,7 @@ const ErrorPage = () => {
             Top Gainers <PiChartLineUpThin />
           </>
         ),
-        content: <CardListWrapper data={topgainers?topgainers:[]}/>,
+        content: <CardListWrapper data={Array.isArray(topgainers) ? topgainers:[]}/>,
       },
       {
         id: 'tab2',
@@ -33,7 +34,7 @@ const ErrorPage = () => {
             Top Losers <PiChartLineDownThin />
           </>
         ),
-        content: <CardListWrapper data={toplosers?toplosers:[]}/>,
+        content: <CardListWrapper data={Array.isArray(toplosers) ? toplosers:[]}/>,
       },
     ];
     function displayHomepage(){
@@ -53,7 +54,8 @@ const ErrorPage = () => {
         )
     }
     useEffect(() => {
-      if(topgainers&&toplosers){
+      console.log(isExpired(expirationTime))
+      if(topgainers&&toplosers&&!isExpired(expirationTime)){  
         return;
       }
       let data={

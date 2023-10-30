@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import style from './style.module.scss'; 
 
-const ToggleSwitch = ({ options, onToggle }) => {
+const ToggleSwitch = ({ options, onToggle,width }) => {
   const [selectedOption, setSelectedOption] = useState(options[0]);
 
   const handleToggle = (option) => {
@@ -15,6 +15,7 @@ const ToggleSwitch = ({ options, onToggle }) => {
         <button
           key={index}
           onClick={() => handleToggle(option)}
+          style={{width:width}}
           className={`${style.toggleButton} ${option === selectedOption ? style.selected : ''}`}
         >
           {option}

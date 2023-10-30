@@ -10,6 +10,7 @@ const dataSlice = createSlice({
     toplosers:null,
     lastupdated:'',
     suggested_stocks:null,
+    expirationTime:null
   },
   reducers: {
     setData: (state, action) => {
@@ -19,6 +20,7 @@ const dataSlice = createSlice({
       state.topgainers = action.payload.top_gainers;
       state.toplosers = action.payload.top_losers;
       state.lastupdated = action.payload.last_updated;
+      state.expirationTime = new Date().toISOString();
     },
     setLoading: (state) => {
       state.loading = true;

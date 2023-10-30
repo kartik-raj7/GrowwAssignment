@@ -16,10 +16,12 @@ import StockHeaderDiv from '@/components/StockHeader/StockHeaderDiv';
 import ToggleSwitch from '@/utils/ToggleSwitches';
 import LoadingSpinner from '@/utils/Loader';
 import ErrorPage from './404';
+import NothingToSeeHere from '@/components/NothingToSee/NothingToSee';
+import isExpired from '@/utils/CacheExpired';
 // import { FetchStockdata } from './api/FetchStockData';
 const Stocks = () => {
     function FetchStockdata(ticker){
-        if(stock_details[ticker]){
+        if(stock_details[ticker]&&!isExpired(expirationTime)){ //
              return;
         }
         else{
@@ -76,9 +78,9 @@ const Stocks = () => {
             filteredData}
     }
     const dispatch = useDispatch();
-    const [chartdata,setchartdata] = useState(dailydata);
+    const [chartdata,setchartdata] = useState();
     const router = useRouter();
-    const { loading, error,stock_details} = useSelector((state) => state.stockData);
+    const { loading, error,stock_details,expirationTime} = useSelector((state) => state.stockData);
     const {ticker} = router.query;
     const symbol = ticker;
     const [chartfreq,setchartfreq] = useState('1D');
@@ -88,17 +90,22 @@ const Stocks = () => {
     const options = ['1D', '1W', '1M','3M','6M','1Y'];
     useEffect(() => {
         FetchStockdata(ticker);
-        // setchartdata(stock_details[ticker]?.daily)
+        setchartdata(stock_details[ticker]?.daily)
     }, [dispatch,ticker,stock_details]);
     useEffect(()=>{
+      if(chartdata==null&&stock_details[ticker]?.daily){
+        setchartdata(stock_details[ticker]?.daily);
+      }
+    },[stock_details[ticker]?.daily]);
+    useEffect(()=>{
       if(chartfreq==='1D'){
-        setchartdata(dailydata)
+        setchartdata(stock_details[ticker]?.daily)
         }
       else if(chartfreq==='1W'){
-        setchartdata(weeklydata);
+        setchartdata(stock_details[ticker]?.weekly);
         }
       else if(chartfreq==='1M'){
-        setchartdata(monthlydata);
+        setchartdata(stock_details[ticker]?.monthly);
         }
     else if(chartfreq==='3M'){
         if(stock_details[ticker].quarterly){
@@ -139,7 +146,10 @@ const Stocks = () => {
           else if(error){
             return <ErrorPage/>
           }
-          else return(
+          else{ 
+            console.log(stock_details);
+            if(Array.isArray(stock_details[ticker]?.image)&&typeof chartdata =='object' && typeof stock_details[ticker]?.overview == 'object')//replaceoverview data with that of store
+            return(
             <div>
             <TopBar/>
             <div className='flex align-center justify-center '>
@@ -147,16 +157,24 @@ const Stocks = () => {
             <div className='pt-1'>
             <StockHeaderDiv data={stock_details[ticker]?.image}/>
             </div>
-            <Container>
-            {chartdata&&<LineChartComponent data={chartdata}/>}
+           <Container>
+            <LineChartComponent data={chartdata}/>
             <ToggleSwitch options={options} onToggle={handleToggle}/>
-            </Container>         
+            </Container>        
              {/* {stock_details[ticker]?.overviewdata&&<StockInfoContainer data={stock_details[ticker]?.overviewdata}/>}  */}
-            <StockInfoContainer data={overviewdata}/>
+            <StockInfoContainer data={stock_details[ticker]?.overview}/>
             </div>
             </div>
             </div>
           )
+          else{
+            return(<>
+              <TopBar error={true}/>
+              <NothingToSeeHere/>
+              </>
+            )
+          }
+        }
     }
   return (
     <div>

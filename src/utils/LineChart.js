@@ -24,17 +24,17 @@ const LineChart = ({ data }) => {
     labels: labels,
     datasets: [
       {
-        label: 'Visitors',
+        label: 'Closing',
         data: datapoints,
         borderColor: '#af91fc',
         borderWidth: 3,
-        pointRadius: 0.4, // Set point radius here
+        pointRadius: 0.9, 
       },
     ],
   };
 
   return (
-    <div>
+    <div className='mx-1'>
       <Line
         data={chartdata}
         options={{

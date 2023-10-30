@@ -4,6 +4,8 @@ import style from './stockheader.module.scss'
 const StockHeaderDiv = ({data}) => {
 const stockdata = data?data[0]:'';
   return (
+    <>
+    {data.length>1&&
     <div className='flex justify-between'>
      <div className='flex'>
       <div className={style.companyimageborder}>
@@ -17,7 +19,8 @@ const stockdata = data?data[0]:'';
      <div className={style.pricediv}>
        <div className={style.companytitle}>${stockdata?.price}</div>
       </div>
-    </div>
+    </div>}
+    </>
   )
 }
 

@@ -64,7 +64,7 @@ const InputField = ({ value, label, placeholder, type, onChange, handleSearch, l
   useEffect(() => {
     const handleClickOutside = (event) => {
       console.log(inputRef.current.matches(':focus'))
-      if(!inputRef.current.matches(':focus')){
+      if(!inputRef.current.matches(':focus')&&!dropdownRef?.current?.contains(event.target)){
         closeDropdown();
       }
       else{
@@ -81,8 +81,8 @@ const InputField = ({ value, label, placeholder, type, onChange, handleSearch, l
   function suggestedStocks() {
     if (suggestions && suggestions.length > 0 && value && isDropdownOpen) {
       return (
-        <div ref={dropdownRef} className={`${style.suggestedStocks} ${style.dropdown} search-input-width mr-1`}>
-          <ToggleSwitch options={options} onToggle={handleToggle} />
+        <div ref={dropdownRef} className={`${style.suggestedStocks} ${style.dropdown} search-input-width mr-1`} >
+          <ToggleSwitch options={options} onToggle={handleToggle} width={'70px'} />
           <ul>
             {suggestions?.map((stock, index) => (
               <li key={index} onClick={() =>{ closeDropdown();redirectstockDetailsPage(stock);}} className="flex justify-between align-center">
@@ -97,7 +97,7 @@ const InputField = ({ value, label, placeholder, type, onChange, handleSearch, l
     else if(suggested_stocks&&suggested_stocks.length>0&&!value&&isDropdownOpen){
       return (
         <div ref={dropdownRef} className={`${style.suggestedStocks} ${style.dropdown} search-input-width mr-1`}>
-          <ToggleSwitch options={options} onToggle={handleToggle} />
+          <ToggleSwitch options={options} onToggle={handleToggle} width={'70px'}/>
           <ul>
             {prevsearched?.map((stock, index) => (
               <li key={index} onClick={() =>{ closeDropdown();redirectstockDetailsPage(stock);}} className="flex justify-between align-center">

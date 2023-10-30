@@ -11,6 +11,11 @@ const nextConfig = {
   images: {
     domains: ['financialmodelingprep.com'],
   },
+  exportPathMap: function () {
+    return {
+      '/': { page: '/homepage' },
+    };
+  },
 }
 
 module.exports = nextConfig

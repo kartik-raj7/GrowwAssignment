@@ -1,10 +1,10 @@
 import React from 'react'
-
-const Detailcolumn = ({data,heading,color}) => {
+import style from './style.module.scss'
+const Detailcolumn = ({data,heading,color,align}) => {
   return (
-    <div className='flex flex-column'>
-        <div style={{color:color}}>{heading}</div>
-        <div>{data}</div>
+    <div className={`flex flex-column ${align}`}>
+        <div style={{color:color}} className={style.detailcolumnheading}>{heading}</div>
+        <div className={style.detailcolumnsubheading}>{data}</div>
     </div>
   )
 }
