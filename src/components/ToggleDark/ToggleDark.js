@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import {FaMoon,FaSun} from 'react-icons/fa'
 import style from './toggledark.module.scss'
 const DarkModeToggle = () => {
-  const storedDarkMode = JSON.parse(localStorage.getItem('dark-mode')) || false;
+    const storedDarkMode = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('dark-mode')) || false : false;
   const [isDarkMode, setIsDarkMode] = useState(storedDarkMode);
 
   const toggleDarkMode = () => {

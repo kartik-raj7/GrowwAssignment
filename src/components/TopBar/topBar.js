@@ -93,7 +93,7 @@ const TopBar = ({error}) => {
         logo={<BiSearch/>}
         handleSearch={handleSearch}
         redirectstockDetailsPage={redirectstockDetailsPage}
-        data={searchresultdata}
+        data={searchresultdata?searchresultdata:[]}
       />
   <div className='flex justify-center align-center'>
     <DarkModeToggle/>
