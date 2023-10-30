@@ -76,7 +76,7 @@ const Stocks = () => {
             filteredData}
     }
     const dispatch = useDispatch();
-    const [chartdata,setchartdata] = useState(null);
+    const [chartdata,setchartdata] = useState(dailydata);
     const router = useRouter();
     const { loading, error,stock_details} = useSelector((state) => state.stockData);
     const {ticker} = router.query;
@@ -88,7 +88,7 @@ const Stocks = () => {
     const options = ['1D', '1W', '1M','3M','6M','1Y'];
     useEffect(() => {
         FetchStockdata(ticker);
-        setchartdata(stock_details[ticker]?.daily)
+        // setchartdata(stock_details[ticker]?.daily)
     }, [dispatch,ticker,stock_details]);
     useEffect(()=>{
       if(chartfreq==='1D'){
@@ -151,8 +151,8 @@ const Stocks = () => {
             {chartdata&&<LineChartComponent data={chartdata}/>}
             <ToggleSwitch options={options} onToggle={handleToggle}/>
             </Container>         
-             {stock_details[ticker]?.overviewdata&&<StockInfoContainer data={stock_details[ticker]?.overviewdata}/>} 
-            {/* <StockInfoContainer data={overviewdata}/> */}
+             {/* {stock_details[ticker]?.overviewdata&&<StockInfoContainer data={stock_details[ticker]?.overviewdata}/>}  */}
+            <StockInfoContainer data={overviewdata}/>
             </div>
             </div>
             </div>
