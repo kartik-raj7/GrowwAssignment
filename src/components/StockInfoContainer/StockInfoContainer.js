@@ -7,7 +7,8 @@ import Slider from '@/utils/SliderDisplay'
 import { formatCurrency } from '@/utils/GetCurrency'
 import { getScreenSize } from '@/utils/Screensize'
 const StockInfoContainer = ({data}) => {
-  let screensize = getScreenSize();
+//   let screensize = getScreenSize();
+let screensize = '';
   function SliderShow(){
     if(screensize!='mobile'){
         return(
