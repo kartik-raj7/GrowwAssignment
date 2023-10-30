@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 
 const InputField = ({ value, label, placeholder, type, onChange, handleSearch, logo, data,redirectstockDetailsPage }) => {
   const { bestMatches } = data;
-  console.log(bestMatches)
   const {suggested_stocks} = useSelector(state=>state.data);
   const [suggestions, setSuggestions] = useState(bestMatches);
   const [chartfreq, setchartfreq] = useState("Equity");
@@ -69,7 +68,7 @@ const InputField = ({ value, label, placeholder, type, onChange, handleSearch, l
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      console.log(inputRef.current.matches(':focus'))
+    
       if(!inputRef.current.matches(':focus')&&!dropdownRef?.current?.contains(event.target)){
         closeDropdown();
       }

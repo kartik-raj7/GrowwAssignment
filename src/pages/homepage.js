@@ -54,14 +54,14 @@ const ErrorPage = () => {
         )
     }
     useEffect(() => {
-      if(topgainers&&toplosers&&!isExpired(expirationTime)){  
+      if(topgainers&&toplosers&&!isExpired(expirationTime)){  //&&toplosers)
         return;
       }
       let data={
         function:apiRouter.TOP_GAINERS,
       }
       dispatch(fetchDataAsync(data));
-    }, [dispatch,topgainers,toplosers]);
+    }, [dispatch]);
   return (
     <div>
          {displayHomepage()}
