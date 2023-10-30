@@ -37,7 +37,7 @@ const StocksSlice = createSlice({
     },
     setError: (state, action) => {
       state.loading = false;
-      state.error = action.payload;
+      state.error = true;
     },
   },
 });
@@ -54,7 +54,7 @@ export const fetchStockDetailsAsync = (data, type, symbol) => async (dispatch) =
       dispatch(setError(result.message));
     }
   } catch (error) {
-    dispatch(setError('Something went wrong'));
+    dispatch(setError(error.message));
   }
 };
 
@@ -68,7 +68,7 @@ export const fetchImageDetailsASync = (data,type,symbol) => async (dispatch) => 
       dispatch(setError(result.message));
     }
   } catch (error) {
-    dispatch(setError('Something went wrong'));
+    dispatch(setError(error.message));
   }
 };
 export default StocksSlice.reducer;

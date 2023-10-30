@@ -21,7 +21,7 @@ const DarkModeToggle = () => {
 
   return (
     <button
-    className={`${isDarkMode?style.darkmode:style.lightmode} ${style.darklightbtn}`}
+    className={`${isDarkMode?style.darkmode:style.lightmode} ${style.darklightbtn} cursor`}
     onClick={toggleDarkMode}
     style={{
       backgroundColor: isDarkMode ? 'var(--dark-background)' : 'var(--light-background)',
