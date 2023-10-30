@@ -19,6 +19,13 @@ import ErrorPage from './404';
 import NothingToSeeHere from '@/components/NothingToSee/NothingToSee';
 import isExpired from '@/utils/CacheExpired';
 const Stocks = () => {
+  const dispatch = useDispatch();
+  const [chartdata,setchartdata] = useState();
+  const router = useRouter();
+  const { loading, error,stock_details,expirationTime} = useSelector((state) => state.stockData);
+  const {ticker} = router.query;
+  const symbol = ticker;
+  const [chartfreq,setchartfreq] = useState('1D');
     function FetchStockdata(ticker){
         if(stock_details[ticker]&&!isExpired(expirationTime)){ //
              return;
@@ -76,13 +83,6 @@ const Stocks = () => {
             },
             filteredData}
     }
-    const dispatch = useDispatch();
-    const [chartdata,setchartdata] = useState();
-    const router = useRouter();
-    const { loading, error,stock_details,expirationTime} = useSelector((state) => state.stockData);
-    const {ticker} = router.query;
-    const symbol = ticker;
-    const [chartfreq,setchartfreq] = useState('1D');
     const handleToggle = (selectedOption) => {
         setchartfreq(selectedOption)
       };
