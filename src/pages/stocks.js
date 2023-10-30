@@ -1,24 +1,23 @@
 import TopBar from '@/components/TopBar/topBar'
 import { fetchImageDetailsASync, fetchStockDetailsAsync, setData } from '@/redux/api/stockdetails';
 import { apiRouter } from '@/services/apiRouter';
-import Container from '@/utils/Container';
+import Container from '@/utils/ui/Container';
 import LineChartComponent from '@/components/LineChartComponent/LineChartComponent';
 import dailydata from '@/components/LineChartComponent/dailydata';
 import monthlydata from '@/components/LineChartComponent/monthlydata';
 import weeklydata from '@/components/LineChartComponent/weeklydata';
-import Tag from '@/utils/Tag';
+import Tag from '@/utils/ui/Tag';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import StockInfoContainer from '@/components/StockInfoContainer/StockInfoContainer';
 import overviewdata from '@/components/LineChartComponent/overview';
 import StockHeaderDiv from '@/components/StockHeader/StockHeaderDiv';
-import ToggleSwitch from '@/utils/ToggleSwitches';
-import LoadingSpinner from '@/utils/Loader';
+import ToggleSwitch from '@/utils/ui/ToggleSwitches';
+import LoadingSpinner from '@/utils/ui/Loader';
 import ErrorPage from './404';
 import NothingToSeeHere from '@/components/NothingToSee/NothingToSee';
 import isExpired from '@/utils/CacheExpired';
-// import { FetchStockdata } from './api/FetchStockData';
 const Stocks = () => {
     function FetchStockdata(ticker){
         if(stock_details[ticker]&&!isExpired(expirationTime)){ //

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import style from './style.module.scss'; 
+import style from '../style.module.scss'; 
 
 const ToggleSwitch = ({ options, onToggle,width }) => {
   const [selectedOption, setSelectedOption] = useState(options[0]);

@@ -6,7 +6,7 @@ import TabPane from '@/utils/TabPane/TabPane';
 import { PiChartLineDownThin, PiChartLineUpThin } from 'react-icons/pi';
 import CardListWrapper from '@/components/CardListComponent/CardListWrapper';
 import { apiRouter } from '@/services/apiRouter';
-import LoadingSpinner from '@/utils/Loader';
+import LoadingSpinner from '@/utils/ui/Loader';
 import { useRouter } from 'next/router';
 import isExpired from '@/utils/CacheExpired';
 

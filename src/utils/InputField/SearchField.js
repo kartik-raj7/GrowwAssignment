@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import style from "./style.module.scss";
-import Tag from "../Tag";
-import ToggleSwitch from "../ToggleSwitches";
+import Tag from "../ui/Tag";
+import ToggleSwitch from "../ui/ToggleSwitches";
 import { useSelector } from "react-redux";
 
 const InputField = ({ value, label, placeholder, type, onChange, handleSearch, logo, data,redirectstockDetailsPage }) => {

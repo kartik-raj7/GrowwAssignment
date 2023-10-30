@@ -1,6 +1,5 @@
 import React from 'react';
 import { Line, Point } from 'react-chartjs-2';
-import { Chart } from 'chart.js';
 import 'chart.js/auto'
 
 const LineChart = ({ data }) => {
