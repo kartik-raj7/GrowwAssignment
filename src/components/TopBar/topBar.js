@@ -29,8 +29,7 @@ const TopBar = ({error}) => {
       try {
         const result = await axiosGet(data)
         if(result){
-          setsearchresultData(result)
-          console.log(result)
+          setsearchresultData(result.data)
         }
         
         
