@@ -11,7 +11,6 @@ const StocksSlice = createSlice({
   },
   reducers: {
     setData: (state, action) => {
-      console.log(action.payload)
       const { symbol, type, data } = action.payload;
 
       state.loading = false;

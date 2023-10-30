@@ -8,8 +8,6 @@ import { formatCurrency } from '@/utils/GetCurrency'
 import { getScreenSize } from '@/utils/Screensize'
 import CapDetermine from '@/utils/CapDetermine'
 const StockInfoContainer = ({data}) => {
-// let screensize = getScreenSize();
-// console.log(screensize)
 let screensize = ''
   function SliderShow(){
     if(screensize!='mobile'){

@@ -54,7 +54,6 @@ const ErrorPage = () => {
         )
     }
     useEffect(() => {
-      console.log(isExpired(expirationTime))
       if(topgainers&&toplosers&&!isExpired(expirationTime)){  
         return;
       }

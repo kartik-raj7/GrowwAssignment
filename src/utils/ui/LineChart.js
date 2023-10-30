@@ -3,7 +3,6 @@ import { Line, Point } from 'react-chartjs-2';
 import 'chart.js/auto'
 
 const LineChart = ({ data }) => {
-  console.log(data);
   var chartdata;
   const dataKeys = Object.keys(data);
   let secondKey;
@@ -11,7 +10,6 @@ const LineChart = ({ data }) => {
     secondKey = dataKeys[1];
   }
   const chartd = data[`${secondKey}`];
-  console.log(chartd);
   const keysArray = Object.keys(chartd);
   let labels = [];
   let datapoints = [];
