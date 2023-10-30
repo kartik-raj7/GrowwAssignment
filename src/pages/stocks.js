@@ -147,7 +147,7 @@ const Stocks = () => {
           }
           else{ 
             console.log(stock_details);
-            if(Array.isArray(stock_details[ticker]?.image)&&typeof chartdata =='object' && typeof stock_details[ticker]?.overview == 'object')//replaceoverview data with that of store
+            if(Array.isArray(stock_details[ticker]?.image)&&typeof chartdata =='object' && typeof stock_details[ticker]?.overview == 'object')
             return(
             <div>
             <TopBar/>

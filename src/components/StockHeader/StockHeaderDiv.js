@@ -5,7 +5,7 @@ const StockHeaderDiv = ({data}) => {
 const stockdata = data?data[0]:'';
   return (
     <>
-    {data.length>1&&
+    {data.length>=1&&
     <div className='flex justify-between'>
      <div className='flex'>
       <div className={style.companyimageborder}>
