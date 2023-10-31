@@ -86,7 +86,7 @@ const Stocks = () => {
     useEffect(() => {
         FetchStockdata(ticker);
         setchartdata(stock_details[ticker]?.daily)
-    }, [dispatch,ticker,stock_details]);
+    }, [dispatch,ticker]);
     useEffect(()=>{
       if(chartdata==null&&stock_details[ticker]?.daily){
         setchartdata(stock_details[ticker]?.daily);
